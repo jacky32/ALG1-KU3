@@ -18,4 +18,6 @@ public class Car {
   public String getModel() { return model; }
 
   public String getManufacturer() { return manufacturer; }
+
+  public double getAverageConsumption() { return consumption.getAverage(); }
 }
