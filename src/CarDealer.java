@@ -5,4 +5,15 @@ public class CarDealer {
   public CarDealer() {
 
   }
+
+  public void addCar(Car car) {
+    cars.add(car);
+  }
+
+  private boolean testAddCar(Car car) {
+    int initialCarCount = cars.size();
+    cars.add(car);
+    int endCarCount = cars.size();
+    return (endCarCount == initialCarCount + 1);
+  }
 }
