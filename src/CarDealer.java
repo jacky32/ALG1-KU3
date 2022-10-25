@@ -35,6 +35,65 @@ public class CarDealer {
     return carsUnderAvgCons.toArray(new Car[0]);
   }
 
+  public Car[] getCarsByFuel(Fuel fuel) {
+    ArrayList<Car> carsByFuel = new ArrayList<Car>();
+    for (Car car: cars ) {
+      if(car.getFuel() == fuel) { carsByFuel.add(car); }
+    }
+    return carsByFuel.toArray(new Car[0]);
+  }
+
+  public String runTests() {
+    int passedTests = 0;
+    int runTests = 0;
+    Consumption testConsumption = new Consumption(4, 6);
+    Car testCar = new Car("A7", "Audi", 32, testConsumption, 200000, Fuel.Diesel);
+
+    cars.clear();
+    if (testGetCarByModel()) passedTests++;
+    runTests++;
+
+    cars.clear();
+    if (testAddCar(testCar)) passedTests++;
+    runTests++;
+
+    cars.clear();
+    if (testGetCarsByManufacturer()) passedTests++;
+    runTests++;
+
+    cars.clear();
+    if (testGetCarsUnderAverageConsumption()) passedTests++;
+    runTests++;
+
+    cars.clear();
+    if (testGetCarsByFuel()) passedTests++;
+    runTests++;
+
+    if (passedTests == runTests) {
+      return "All tests passed";
+    } else {
+      return runTests - passedTests + "tests failed";
+    }
+  }
+
+  private boolean testGetCarsByFuel() {
+    Consumption testConsumption = new Consumption(5, 6);
+    Car testCar1 = new Car("A7", "Audi", 32, testConsumption, 400000, Fuel.Diesel);
+    Car testCar2 = new Car("A5", "Audi", 24, testConsumption, 200000, Fuel.Hybrid);
+    Car testCar3 = new Car("A2", "Audi", 12, testConsumption, 450000, Fuel.Hybrid);
+    Car testCar4 = new Car("A4", "BMW", 32, testConsumption, 250000, Fuel.Petrol);
+    cars.add(testCar1);
+    cars.add(testCar2);
+    cars.add(testCar3);
+    cars.add(testCar4);
+    Car[] givenCars = getCarsByFuel(Fuel.Hybrid);
+    int sameCars = 0;
+    for (Car givenCar : givenCars) {
+      if (givenCar == testCar2 || givenCar == testCar3) sameCars++;
+    }
+    return (sameCars == 2 && givenCars.length == 2);
+  }
+
   private boolean testGetCarsUnderAverageConsumption() {
     Consumption testConsumption1 = new Consumption(5, 6);
     Consumption testConsumption2 = new Consumption(1, 3);
@@ -68,35 +127,6 @@ public class CarDealer {
       if (givenCar == testCar1 || givenCar == testCar2) sameCars++;
     }
     return (sameCars == 2 && givenCars.length == 2);
-  }
-
-  public String runTests() {
-    int passedTests = 0;
-    int runTests = 0;
-    Consumption testConsumption = new Consumption(4, 6);
-    Car testCar = new Car("A7", "Audi", 32, testConsumption, 200000, Fuel.Diesel);
-
-    cars.clear();
-    if (testGetCarByModel()) passedTests++;
-    runTests++;
-
-    cars.clear();
-    if (testAddCar(testCar)) passedTests++;
-    runTests++;
-
-    cars.clear();
-    if (testGetCarsByManufacturer()) passedTests++;
-    runTests++;
-
-    cars.clear();
-    if (testGetCarsUnderAverageConsumption()) passedTests++;
-    runTests++;
-
-    if (passedTests == runTests) {
-      return "All tests passed";
-    } else {
-      return runTests - passedTests + "tests failed";
-    }
   }
 
   private boolean testGetCarByModel() {
