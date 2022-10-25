@@ -19,6 +19,33 @@ public class CarDealer {
     return null;
   }
 
+  public Car[] getCarsByManufacturer(String manufacturer) {
+    ArrayList<Car> carsByManufacturer = new ArrayList<Car>();
+    for (Car car: cars) {
+      if(car.getManufacturer().equals(manufacturer)) { carsByManufacturer.add(car); }
+    }
+    Car[] finalCars = new Car[carsByManufacturer.size()];
+    finalCars = carsByManufacturer.toArray(finalCars);
+    return finalCars;
+  }
+
+  private boolean testGetCarsByManufacturer() {
+    Consumption testConsumption = new Consumption(4, 6, 5);
+    String manufacturer = "tested manufacturer";
+    Car testCar1 = new Car("A7", manufacturer, 32, testConsumption, 400000, Fuel.Diesel);
+    Car testCar2 = new Car("A5", manufacturer, 24, testConsumption, 200000, Fuel.Hybrid);
+    Car testCar3 = new Car("A4", "BMW", 32, testConsumption, 250000, Fuel.Petrol);
+    cars.add(testCar1);
+    cars.add(testCar2);
+    cars.add(testCar3);
+    Car[] givenCars = getCarsByManufacturer(manufacturer);
+    int sameCars = 0;
+    for (int i = 0; i < givenCars.length; i++) {
+      if (givenCars[i] == testCar1 || givenCars[i] == testCar2) sameCars++;
+    }
+    return (sameCars == 2);
+  }
+
   public String runTests() {
     int passedTests = 0;
     int runTests = 0;
@@ -28,6 +55,8 @@ public class CarDealer {
     if (testGetCarByModel()) passedTests++;
     runTests++;
     if (testAddCar(testCar)) passedTests++;
+    runTests++;
+    if (testGetCarsByManufacturer()) passedTests++;
     runTests++;
 
     if (passedTests == runTests) {
