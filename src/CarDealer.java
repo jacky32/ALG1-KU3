@@ -14,7 +14,7 @@ public class CarDealer {
 
   public Car getCarByModel(String model) {
     for (Car car: cars) {
-      if(car.getModel()==model) { return car; }
+      if(car.getModel().equals(model)) { return car; }
     }
   }
 
