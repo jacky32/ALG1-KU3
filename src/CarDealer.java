@@ -24,9 +24,7 @@ public class CarDealer {
     for (Car car: cars) {
       if(car.getManufacturer().equals(manufacturer)) { carsByManufacturer.add(car); }
     }
-    Car[] finalCars = new Car[carsByManufacturer.size()];
-    finalCars = carsByManufacturer.toArray(finalCars);
-    return finalCars;
+    return carsByManufacturer.toArray(new Car[0]);
   }
 
   private boolean testGetCarsByManufacturer() {
@@ -40,10 +38,10 @@ public class CarDealer {
     cars.add(testCar3);
     Car[] givenCars = getCarsByManufacturer(manufacturer);
     int sameCars = 0;
-    for (int i = 0; i < givenCars.length; i++) {
-      if (givenCars[i] == testCar1 || givenCars[i] == testCar2) sameCars++;
+    for (Car givenCar : givenCars) {
+      if (givenCar == testCar1 || givenCar == testCar2) sameCars++;
     }
-    return (sameCars == 2);
+    return (sameCars == 2 && givenCars.length == 2);
   }
 
   public String runTests() {
