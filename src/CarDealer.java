@@ -2,10 +2,8 @@ import java.util.ArrayList;
 
 public class CarDealer {
   private ArrayList<Car> cars = new ArrayList<Car>();
-  public CarDealer() {
 
-  }
-
+  public CarDealer(){}
   public void addCar(Car car) {
     cars.add(car);
   }
