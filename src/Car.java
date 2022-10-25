@@ -6,5 +6,12 @@ public class Car {
   private int price;
   private Fuel fuel;
 
-  public Car() {}
+  public Car(String model, String manufacturer, int kilometers, Consumption consumption, int price, Fuel fuel) {
+    this.model = model;
+    this.manufacturer = manufacturer;
+    this.kilometers = kilometers;
+    this.consumption = consumption;
+    this.price = price;
+    this.fuel = fuel;
+  }
 }

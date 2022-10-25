@@ -10,10 +10,12 @@ public class CarDealer {
     cars.add(car);
   }
 
+  public int getCarCount() { return cars.size(); }
+
   private boolean testAddCar(Car car) {
-    int initialCarCount = cars.size();
+    int initialCarCount = getCarCount();
     cars.add(car);
-    int endCarCount = cars.size();
+    int endCarCount = getCarCount();
     return (endCarCount == initialCarCount + 1);
   }
 }
