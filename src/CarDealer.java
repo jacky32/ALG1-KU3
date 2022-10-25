@@ -12,6 +12,12 @@ public class CarDealer {
 
   public int getCarCount() { return cars.size(); }
 
+  public Car getCarByModel(String model) {
+    for (Car car: cars) {
+      if(car.getModel()==model) { return car; }
+    }
+  }
+
   private boolean testAddCar(Car car) {
     int initialCarCount = getCarCount();
     cars.add(car);

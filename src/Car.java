@@ -14,4 +14,6 @@ public class Car {
     this.price = price;
     this.fuel = fuel;
   }
+
+  public String getModel() { return model; }
 }
